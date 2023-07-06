@@ -1,0 +1,52 @@
+input_path: ???
+out_prefix: ???
+dtype: float64
+
+tree_model:
+  embed:
+    space: ???     # euclid, lorentz
+    dist_type: ??? # diag, full
+    dim: ???       # 2
+    q_dist:
+      scale: 1e-1
+    r_dist:
+      scale: 1.
+  linker: nj
+  branch:
+    q_dist:
+      name: log_normal
+      lscale: 0.
+      lsigma: 0.
+      gnn:
+        #type: gcn
+        type: edge
+        n_layers: 2
+
+lax_model:
+  network: mlp
+  scale_factor: 10
+
+training:
+  seed: 0
+  detect_anomaly: false
+  max_steps: 1_000_000
+  check_interval: 1000
+  device: ???  # cpu
+  mc_samples: ??? # 1
+  use_iw_elbo: ??? #false
+  use_loo: ??? #false
+  use_lax: ??? #false
+  use_anneal: false
+  annealing:
+    init: 0.001
+    steps: 100_000
+  optimizer:
+    name: adam
+    lr: 1.0e-4
+    beta1: 0.9
+    beta2: 0.999
+    weight_decay: 0.0
+    scheduler:
+      name: step_lr
+      step_size: 200_000
+      gamma: 0.75
