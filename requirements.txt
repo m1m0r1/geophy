@@ -11,4 +11,4 @@ PyYAML==5.4
 scipy==1.6.3
 seaborn==0.11.1
 torch==2.2.0
-tqdm==4.60.0
+tqdm==4.66.3
